@@ -39,7 +39,7 @@ var verifyUser = routes.middleware.verifyUser;
 
 // routes
 app.get('/', routes.static.homepage);
-app.post('/log', verifyUser, routes.user.addLogEntry);
+app.post('/api/log', verifyUser, routes.user.addLogEntry);
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
