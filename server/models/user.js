@@ -1,3 +1,5 @@
+/*globals module */
+
 // module dependencies
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;

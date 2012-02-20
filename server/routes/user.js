@@ -1,3 +1,5 @@
+/*globals module */
+
 var userController = module.exports;
 
 userController.addLogEntry = function(req, res) {

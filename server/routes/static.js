@@ -1,3 +1,5 @@
+/*globals module */
+
 var controller = module.exports;
 
 controller.homepage = function(req, res) {

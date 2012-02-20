@@ -1,3 +1,5 @@
+/*globals module */
+
 var middleware = module.exports;
 
 middleware.verifyUser = function(req, res, next) {
