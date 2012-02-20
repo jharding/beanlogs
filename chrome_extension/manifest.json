@@ -7,6 +7,6 @@
     "background_page": "lib/background.html",
     "permissions": [
         "history",
-        "http://localhost"
+        "http://*/"
     ]
 }
