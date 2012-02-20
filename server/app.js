@@ -1,4 +1,5 @@
 // module dependencies
+var conf = require('./conf.js');
 var express = require('express');
 var mongoose = require('mongoose');
 var mongooseAuth = require('mongoose-auth');
@@ -9,7 +10,7 @@ var app = module.exports = express.createServer();
 
 // configuration
 app.configure(function(){
-  mongoose.connect('mongodb://localhost/onestory');
+  mongoose.connect(conf.mongo.uri);
   
   mongooseAuth.helpExpress(app);
   
