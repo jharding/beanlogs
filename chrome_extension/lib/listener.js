@@ -1,3 +1,5 @@
+/*globals chrome */
+
 (function() {
     var host = 'http://localhost:3000';
 
@@ -28,4 +30,4 @@
             }
         });
     });
-})()
+})();
