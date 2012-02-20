@@ -6,6 +6,9 @@ middleware.verifyUser = function(req, res, next) {
   }
 
   else {
-    next(new Error('No credentials'));
+    res.json({
+      success: false,
+      isLoggedIn: false
+    });
   }
 };

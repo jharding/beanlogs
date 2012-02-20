@@ -8,6 +8,19 @@ userController.addLogEntry = function(req, res) {
     url: url,
     timestamp: timestamp
   };
-  req.user.addLogEntry(entryData);
-  res.send();
+  req.user.addLogEntry(entryData, function(error) {
+    if (!error) {
+      res.json({
+        success: true,
+        isLoggedIn: true
+      });
+    }
+
+    else {
+      res.json({
+        success: false,
+        isLoggedIn: true
+      });
+    }
+  });
 };

@@ -36,15 +36,20 @@ UserSchema.plugin(mongooseAuth, {
 
 /*** methods ***/
 
-UserSchema.methods.addLogEntry = function(data) {
+UserSchema.methods.addLogEntry = function(data, callback) {
+  callback = callback || function() {};
+  
   var entry = new LogEntry(data);
   this.log.push(entry);
+  
   this.save(function(error) {
     if (!error) {
       console.log('saved');
       console.log('URL: ' + data.url);
       console.log('time: ' + data.timestamp);
     }
+    
+    callback(error);
   });
 };
 
