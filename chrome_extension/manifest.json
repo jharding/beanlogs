@@ -1,0 +1,12 @@
+{
+    "name": "onestory",
+    "version": "0.0",
+    "browser_action": {
+        "default_icon": "assets/icon.png"
+    },
+    "background_page": "lib/background.html",
+    "permissions": [
+        "history",
+        "http://localhost"
+    ]
+}
