@@ -2,6 +2,7 @@
 
 // module dependencies
 var User = require('../models').user.Model;
+var LogEntry = require('../models').logEntry.Model;
 
 var userController = module.exports;
 
@@ -31,20 +32,13 @@ userController.addLogEntry = function(req, res) {
 };
 
 userController.showProfile = function(req, res) {
+  // userId defaults to logged in user
   var userId = req.params.id || req.user.id;
-  if (userId) {
-    User.findById(userId, function(error, user) {
-      if (!error) {
-        res.render('profile.jade', {
-          log: user.log
-        });
-      }
-
-      else {
-
-      }
-    });
-    
-  }
-   
+  LogEntry.findMostRecentByUser(userId, 10, function(error, results) {
+    if (!error) {
+      res.render('profile.jade', {
+        log: results
+      });
+    }
+  });
 };

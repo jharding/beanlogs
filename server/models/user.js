@@ -5,11 +5,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var mongooseAuth = require('mongoose-auth');
 var LogEntry = require('./').logEntry.Model;
-var LogEntrySchema = require('./').logEntry.Schema;
 
-var UserSchema = new Schema({
-  log: [ LogEntrySchema ]
-});
+var UserSchema = new Schema({});
 
 // setting up mongoose-auth
 var User = null;
@@ -40,13 +37,15 @@ UserSchema.plugin(mongooseAuth, {
 
 UserSchema.methods.addLogEntry = function(data, callback) {
   callback = callback || function() {};
-  
+
+  // assign owner id
+  data.owner = this.id;
+
   var entry = new LogEntry(data);
-  this.log.push(entry);
-  
-  this.save(function(error) {
+  entry.save(function(error) {
     if (!error) {
       console.log('saved');
+      console.log('owner: ' + data.owner);
       console.log('URL: ' + data.url);
       console.log('time: ' + data.timestamp);
     }
