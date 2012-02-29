@@ -1,5 +1,8 @@
 /*globals module */
 
+// module dependencies
+var User = require('../models').user.Model;
+
 var userController = module.exports;
 
 userController.addLogEntry = function(req, res) {
@@ -25,4 +28,23 @@ userController.addLogEntry = function(req, res) {
       });
     }
   });
+};
+
+userController.showProfile = function(req, res) {
+  var userId = req.params.id || req.user.id;
+  if (userId) {
+    User.findById(userId, function(error, user) {
+      if (!error) {
+        res.render('profile.jade', {
+          log: user.log
+        });
+      }
+
+      else {
+
+      }
+    });
+    
+  }
+   
 };
