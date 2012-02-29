@@ -1,9 +1,17 @@
 !!! 5
 html
   head
-    title mongoose-auth example
-    script(src='http://static.ak.fbcdn.net/connect/en_US/core.js')
+    title beanlogs
+
+    // stylesheets
+    link(rel='stylesheet', type='text/css', 
+         href='/style/vendor/bootstrap/bootstrap.css')
+    link(rel='stylesheet', type='text/css', 
+         href='/style/vendor/bootstrap/bootstrap-responsive.css')
+
+    // javascripts
+    script(src='/js/vendor/jquery/jquery-1.7.1.js')
+    script(src='/js/vendor/bootstrap/bootstrap.js')
   body
-    h1 mongoose-auth Example
-    #main
+    div.container
       != body
