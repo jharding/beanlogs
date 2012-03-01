@@ -8,14 +8,35 @@ var ObjectId = Schema.ObjectId;
 var LogEntrySchema = new Schema({
   owner: ObjectId, 
   url: String,
+  host: String,
   timestamp: Number
 });
 
 LogEntrySchema.statics
-.findMostRecentByUser = function(userId, max, callback) {
+.getMostRecentByUser = function(userId, max, callback) {
   this.where('owner').equals(userId)
       .desc('timestamp')
       .limit(max)
+      .run(callback);
+};
+
+LogEntrySchema.statics
+.getByUserAndTime = function(userId, time, callback) {
+  var startTime = time.start || 0;
+  var endTime = time.end || (new Date()).getTime();
+
+  this.where('owner').equals(userId)
+      .where('timestamp').gte(startTime)
+      .where('timestamp').lte(endTime)
+      .desc('timestamp')
+      .run(callback);
+};
+
+LogEntrySchema.statics
+.getByUserAndHost = function(userId, host, callback) {
+  this.where('owner').equals(userId)
+      .where('host').equals(host)
+      .desc('timestamp')
       .run(callback);
 };
 
