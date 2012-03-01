@@ -39,7 +39,8 @@ var verifyUser = routes.middleware.verifyUser;
 
 // routes
 app.get('/', routes.static.homepage);
-app.get('/user/:id?', routes.user.showProfile);
+app.get('/user/:id?', routes.user.showMostRecent);
+app.get('/time/:id?', routes.user.showLastWeek);
 app.post('/api/log', verifyUser, routes.user.addLogEntry);
 
 app.listen(3000);
