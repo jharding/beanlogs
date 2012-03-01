@@ -1,20 +1,25 @@
-/*globals chrome */
+/*globals chrome, parseUri */
 
 (function() {
     var host = 'http://localhost:3000';
+    var serverUrl = host + '/api/log';
 
     chrome.history.onVisited.addListener(function(result) {
-        var url = host + '/api/log';
+        var visitedUrl = result.url;
+        var visitedUrlParts = parseUri(result.url);
+        var visitedTimestamp = result.lastVisitTime;
+        
         $.ajax({
-            url: url,
+            url: serverUrl,
             type: 'post',
             dataType: 'json',
             xhrFields: {
                 withCredentials: true
             },
             data: {
-                url: result.url,
-                timestamp: result.lastVisitTime
+                url: visitedUrl,
+                host: visitedUrlParts.host,
+                timestamp: visitedTimestamp 
             },
             error: function() {
                 chrome.browserAction.setIcon({
